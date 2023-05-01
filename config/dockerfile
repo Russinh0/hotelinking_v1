@@ -1,0 +1,16 @@
+FROM mysql:latest
+
+# Copiar el archivo init_db.sql al directorio docker-entrypoint-initdb.d
+COPY ./init_db.sql /docker-entrypoint-initdb.d/
+
+# Definir las variables de entorno de MySQL
+ENV MYSQL_DATABASE=hotelinking_test \
+    MYSQL_USER=root \
+    MYSQL_PASSWORD=Russito1. \
+    MYSQL_ROOT_PASSWORD=Russito1.
+
+# Puerto que expondrá el contenedor
+EXPOSE 3306
+
+# Comando que se ejecutará cuando el contenedor se inicie
+CMD ["mysqld"]

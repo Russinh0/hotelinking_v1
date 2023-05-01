@@ -1,0 +1,26 @@
+
+FROM php:8.1-fpm AS builder
+
+RUN docker-php-ext-install pdo pdo_mysql
+WORKDIR /var/www/html/src/api
+
+# Copiar archivos de composer
+COPY composer.json composer.lock ./
+
+# Instalar dependencias de composer
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        git \
+        unzip \
+    && \
+    rm -rf /var/lib/apt/lists/* && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    composer install --no-dev --no-interaction --no-scripts --no-progress --prefer-dist && \
+    rm -rf /root/.composer
+
+# Copiar el resto de la aplicación
+COPY . ./
+RUN chmod -R 777 /var/www/html/src/api/storage/logs
+
+
+EXPOSE 9000
