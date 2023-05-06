@@ -12,7 +12,16 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+use Illuminate\Support\Facades\Route;
 
 $router->get('/', function () use ($router) {
     return "HOLAA";
+});
+
+$router->group(['prefix' => 'public/user'], function () use ($router) {
+    require __DIR__.'/user_public.php';
+});
+
+$router->group(['prefix' => 'user','middleware'=>'auth'], function () use ($router) {
+    require __DIR__.'/user.php';
 });
