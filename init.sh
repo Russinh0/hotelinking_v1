@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Levantar docker
-docker compose up backend nginx db -d
+docker compose up -d
 
 #Dependencias front
 #docker compose run frontend npm install 

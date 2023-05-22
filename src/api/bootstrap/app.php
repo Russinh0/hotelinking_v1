@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
-
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
     dirname(__DIR__)
 ))->bootstrap();
@@ -27,7 +26,6 @@ $app->withFacades();
 
 $app->withEloquent();
 
-$app->register(Illuminate\Cookie\CookieServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -38,6 +36,13 @@ $app->register(Illuminate\Cookie\CookieServiceProvider::class);
 | your own bindings here if you like or you can make another file.
 |
 */
+$app->singleton(
+    Illuminate\Contracts\Filesystem\Factory::class,
+    function ($app) {
+        return new Illuminate\Filesystem\FilesystemManager($app);
+    }
+);
+
 $app->singleton(Illuminate\Contracts\Http\Kernel::class, App\Http\Kernel::class);
 
 $app->singleton(
@@ -55,6 +60,7 @@ $app->singleton(
     App\Http\Kernel::class
 );
 
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
@@ -68,6 +74,7 @@ $app->singleton(
 
 $app->configure('app');
 $app->configure('jwt');
+$app->configure('auth');
 
 /*
 |--------------------------------------------------------------------------
@@ -80,14 +87,14 @@ $app->configure('jwt');
 |
 */
 
-//$app->middleware([
-    //Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class,
     //Illuminate\Session\Middleware\StartSession::class,
    // App\Http\Middleware\ExampleMiddleware::class
-//]);
+]);
 
 $app->routeMiddleware([
-    'auth' => App\Http\Middleware\Authenticate::class,
+    'auth-api' => App\Http\Middleware\Authenticate::class,
 ]);
 
 //$app->make('Illuminate\Contracts\Http\Kernel')
@@ -103,9 +110,9 @@ $app->routeMiddleware([
 | totally optional, so you are not required to uncomment this line.
 |
 */
-$app->register(Illuminate\Cookie\CookieServiceProvider::class);
 $app->register(App\Providers\RepositoryServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 $app->register(App\Providers\AppServiceProvider::class);
 //$app->register(Tymon\JWTAuth\Providers\JWT\LumenServiceProvider::class);

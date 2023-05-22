@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa5085675073e40894abb3cdd807523e",
+    "content-hash": "5b55d83c313c19a783d52a281c8b619c",
     "packages": [
         {
             "name": "brick/math",
@@ -1071,16 +1071,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v10.9.0",
+            "version": "v10.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "df6cb22937345609dbd42ef9f9cc62bf9f20104f"
+                "reference": "0f8b766d66df7e0784ea73cfe4caf7a48b623f53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/df6cb22937345609dbd42ef9f9cc62bf9f20104f",
-                "reference": "df6cb22937345609dbd42ef9f9cc62bf9f20104f",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/0f8b766d66df7e0784ea73cfe4caf7a48b623f53",
+                "reference": "0f8b766d66df7e0784ea73cfe4caf7a48b623f53",
                 "shasum": ""
             },
             "require": {
@@ -1115,11 +1115,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-04-17T16:01:53+00:00"
+            "time": "2023-05-01T15:41:14+00:00"
         },
         {
             "name": "illuminate/cookie",
-            "version": "v10.9.0",
+            "version": "v10.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cookie.git",

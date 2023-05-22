@@ -14,15 +14,13 @@ services:
 
   frontend:
     build:
-      context: ./src/app
+      context: ./src/client
       dockerfile: dockerfile
     container_name: frontend
     ports:
       - '3001:3000'
     volumes:
-      - ./src/app:/var/www/html/src/app
-    networks:
-      - laravel
+      - ./src/client:/usr/src/app/src/client
 
 
 
@@ -32,7 +30,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - '4406:4406'
+      - '3306:3306'
     volumes:
       - ./mysql:/var/lib/mysql
     env_file: .env

@@ -1,5 +1,0 @@
-{
-    "require": {
-        "paragonie/csp-builder": "^2.8"
-    }
-}

@@ -36,7 +36,7 @@ down:
 	docker compose down
 
 rm images:
-	docker image rm -f nginx:stable-alpine hotelinking-backend mysql:8.0.33 && make down && sudo rm -rf mysql
+	docker image rm -f nginx:stable-alpine hotelinking-backend mysql:8.0.33 hotelinking-frontend && make down && sudo rm -rf mysql
 
 ##LOCAL:
 composer:
